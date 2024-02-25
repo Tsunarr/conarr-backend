@@ -1,0 +1,65 @@
+# Configuration file for MegaLinter
+#
+# See all available variables at https://megalinter.io/latest/config-file/ and in
+# linters documentation
+
+# all, none, or list of linter keys
+APPLY_FIXES: all
+
+# If you use ENABLE variable, all other languages/formats/tooling-formats will
+# be disabled by default
+# ENABLE:
+# If you use ENABLE_LINTERS variable, all other linters will be disabled by
+# default
+# ENABLE_LINTERS:
+
+DISABLE_LINTERS:
+  - REPOSITORY_DEVSKIM
+
+SHOW_ELAPSED_TIME: true
+
+FILEIO_REPORTER: false
+# Uncomment if you want MegaLinter to detect errors but not block CI to pass
+# DISABLE_ERRORS: true
+
+# Configuration for BANDIT
+PYTHON_BANDIT_CONFIG_FILE: .linters/.bandit.yml
+
+# Configuration for JSCPD
+COPYPASTE_JSCPD_CONFIG_FILE: .linters/.jscpd.json
+
+SPELL_CSPELL_CLI_LINT_MODE: project
+SPELL_CSPELL_ARGUMENTS: "."
+
+# Configuration for FLAKE8
+PYTHON_FLAKE8_CONFIG_FILE: .linters/.flake8
+
+CLEAR_REPORT_FOLDER: true
+PARALLEL: false
+
+REPORT_OUTPUT_FOLDER: megalinter-reports/
+
+PRE_COMMANDS:
+  - command: |-
+      echo $(ls -lah .gitignore | sed 's/\s\+/ /g' | cut -d ' ' -f3,4 | sed 's/ /\:/') > perms.txt
+    cwd: "workspace"
+  - command: |-
+      cd ${OLDPWD} &&
+      pip install . &&
+      pip install .[dev]
+    venv: pylint
+  - command: |-
+      cd ${OLDPWD} &&
+      pip install . &&
+      pip install .[dev]
+    venv: pyright
+
+POST_COMMANDS:
+  - command: |-
+      find . -user root -group root -exec chown $(cat perms.txt) {} \;
+      rm perms.txt
+    cwd: "workspace"
+
+FLAVOR_SUGGESTIONS: false
+
+LOG_LEVEL: INFO
