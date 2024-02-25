@@ -1,0 +1,34 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  install:
+    internal: true
+    cmds:
+      - poetry install
+  poetry:test:
+    cmds:
+      - poetry run pytest --junitxml=report.xml --cov=pyconarr/
+      - poetry run coverage xml
+    silent: true
+    deps:
+      - install
+  poetry:build:
+    cmds:
+      - poetry build
+    silent: true
+    deps:
+      - install
+  poetry:run:
+    dir: pyconarr
+    cmds:
+      - poetry run uvicorn main:app --reload
+    silent: true
+    interactive: true
+    deps:
+      - install
+  megalinter:test:
+    cmds:
+      - docker run --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
+    silent: true

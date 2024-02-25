@@ -1,0 +1,71 @@
+# kics-scan disable=555ab8f9-2001-455e-a077-f2d0f41e2fb9
+---
+name: Conarr Backend build and test
+run-name: Conarr Backend build and test
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+        poetry-version: ["1.7.1"]
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installing Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Installing Poetry ${{ matrix.poetry-version }}
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+      - name: Installing go-Task
+        uses: "pnorton5432/setup-task@v1"
+        with:
+          task-version: 3.34.1
+      - name: Testing app
+        run: task poetry:test
+      - name: get reports
+        uses: pmeier/pytest-results-action@main
+        if: success() || failure()
+        with:
+          path: report.xml
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+        poetry-version: ["1.7.1"]
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installing Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Installing Poetry ${{ matrix.poetry-version }}
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+      - name: Installing go-Task
+        uses: "pnorton5432/setup-task@v1"
+        with:
+          task-version: 3.34.1
+      - name: Build app
+        run: task poetry:build

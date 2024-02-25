@@ -1,0 +1,52 @@
+{
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/**",
+    "**/.pnpm-lock.json",
+    ".vscode",
+    "megalinter",
+    "package-lock.json",
+    "report",
+    ".gitignore",
+    "**/.linters/**",
+    ".mega-linter.yml",
+    "**/megalinter-reports/**",
+    "coverage.xml",
+    "LICENSE",
+    "*.pyc"
+  ],
+  "language": "en",
+  "dictionaries": [
+    "companies",
+    "en",
+    "filetypes",
+    "fr",
+    "misc",
+    "python",
+    "softwareTerms"
+  ],
+  "noConfigSearch": true,
+  "words": [
+    "Conarr",
+    "LOCALWORKSPACE",
+    "Tsuna",
+    "cmds",
+    "conarr",
+    "devcontainer",
+    "fastapi",
+    "httpx",
+    "jellyfin",
+    "jellyseerr",
+    "junitxml",
+    "prowlarr",
+    "pyconarr",
+    "pydantic",
+    "radarr",
+    "setuptools",
+    "sonarr",
+    "testsuites",
+    "uvicorn"
+  ],
+  "version": "0.2"
+}
