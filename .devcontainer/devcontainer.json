@@ -18,7 +18,8 @@
         "streetsidesoftware.code-spell-checker",
         "tamasfe.even-better-toml",
         "task.vscode-task",
-        "vivaxy.vscode-conventional-commits"
+        "vivaxy.vscode-conventional-commits",
+        "zeshuaro.vscode-python-poetry"
       ]
     }
   },
