@@ -41,7 +41,7 @@ REPORT_OUTPUT_FOLDER: megalinter-reports/
 
 PRE_COMMANDS:
   - command: |-
-      echo $(ls -lah .gitignore | sed 's/\s\+/ /g' | cut -d ' ' -f3,4 | sed 's/ /\:/') > perms.txt
+      echo $(ls -lah .gitignore | sed 's/\s\+/ /g' | cut -d ' ' -f3,4 | sed 's/ /\:/') > /tmp/perms.txt
     cwd: "workspace"
   - command: |-
       cd ${OLDPWD} &&
@@ -56,8 +56,8 @@ PRE_COMMANDS:
 
 POST_COMMANDS:
   - command: |-
-      find . -user root -group root -exec chown $(cat perms.txt) {} \;
-      rm perms.txt
+      find . -user root -group root -exec chown $(cat /tmp/perms.txt) {} \;
+      rm /tmp/perms.txt
     cwd: "workspace"
 
 FLAVOR_SUGGESTIONS: false
