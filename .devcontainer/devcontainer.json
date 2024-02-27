@@ -19,7 +19,8 @@
         "tamasfe.even-better-toml",
         "task.vscode-task",
         "vivaxy.vscode-conventional-commits",
-        "zeshuaro.vscode-python-poetry"
+        "zeshuaro.vscode-python-poetry",
+        "EditorConfig.EditorConfig"
       ]
     }
   },
