@@ -16,6 +16,8 @@ on:
       - main
 jobs:
   test:
+    permissions:
+      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
@@ -44,6 +46,11 @@ jobs:
         if: success() || failure()
         with:
           path: report.xml
+      - name: get coverage
+        uses: orgoro/coverage@v3.1
+        with:
+          coverageFile: coverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     strategy:
