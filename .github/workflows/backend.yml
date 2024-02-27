@@ -48,6 +48,7 @@ jobs:
           path: report.xml
       - name: get coverage
         uses: orgoro/coverage@v3.1
+        if: github.event_name == 'pull_request'
         with:
           coverageFile: coverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
