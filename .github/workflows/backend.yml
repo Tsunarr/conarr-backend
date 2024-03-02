@@ -28,11 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Installing Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Installing Poetry ${{ matrix.poetry-version }}
-        uses: abatilo/actions-poetry@v2
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Installing go-Task
@@ -64,11 +64,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Installing Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Installing Poetry ${{ matrix.poetry-version }}
-        uses: abatilo/actions-poetry@v2
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Installing go-Task
