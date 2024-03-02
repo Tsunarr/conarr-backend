@@ -1,19 +1,21 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "DOCKER_GID": "${env:DOCKER_GID}"
-    }
-  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "pyconnar",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
   "customizations": {
     "vscode": {
       "extensions": [
+        "bruno-api-client.bruno",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
+        "GitHub.copilot",
         "github.vscode-github-actions",
         "mhutchie.git-graph",
+        "mikestead.dotenv",
         "ms-azuretools.vscode-docker",
+        "ms-python.debugpy",
         "ms-python.python",
         "ms-vsliveshare.vsliveshare",
         "redhat.vscode-yaml",
@@ -28,7 +30,21 @@
   "remoteEnv": {
     "LOCALWORKSPACE": "${localWorkspaceFolder}"
   },
-  "forwardPorts": [],
+  "forwardPorts": [8000, 5000, "spring-boot-admin:8080"],
+  "portsAttributes": {
+    "8000": {
+      "label": "Backend API",
+      "onAutoForward": "silent"
+    },
+    "5000": {
+      "label": "Backend pyctuator",
+      "onAutoForward": "silent"
+    },
+    "spring-boot-admin:8080": {
+      "label": "Spring Boot Admin",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],

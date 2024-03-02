@@ -1,0 +1,23 @@
+meta {
+  name: AuthenticateByName
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Jellyfin_URL}}/Users/AuthenticateByName
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  x-emby-authorization: MediaBrowser , Client="Bruno", Device="PC-Dev", DeviceId="Conarr", Version="0.0.0"
+}
+
+body:json {
+  {
+    "Username": "{{Jellyfin_Admin_Username}}",
+    "Pw": "{{Jellyfin_Admin_Pw}}"
+  }
+}

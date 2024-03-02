@@ -7,9 +7,40 @@ tasks:
     internal: true
     cmds:
       - poetry install
-  poetry:test:
+  poetry:coverage:
+    internal: true
     cmds:
-      - poetry run pytest --junitxml=report.xml --cov=pyconarr/
+      - poetry run coverage xml
+      - poetry run coverage lcov
+  poetry:test:all:
+    cmds:
+      - poetry run pytest
+      - task: poetry:coverage
+    silent: true
+  poetry:test:ci:
+    cmds:
+      - poetry run pytest -m "unit or component"
+      - task: poetry:coverage
+    silent: true
+    deps:
+      - install
+  poetry:test:unit:
+    cmds:
+      - poetry run pytest -m unit
+      - task: poetry:coverage
+    silent: true
+    deps:
+      - install
+  poetry:test:component:
+    cmds:
+      - poetry run pytest -m component
+      - task: poetry:coverage
+    silent: true
+    deps:
+      - install
+  poetry:test:integration:
+    cmds:
+      - poetry run pytest -m integration
       - poetry run coverage xml
     silent: true
     deps:
@@ -21,9 +52,8 @@ tasks:
     deps:
       - install
   poetry:run:
-    dir: pyconarr
     cmds:
-      - poetry run uvicorn main:app --reload
+      - poetry run uvicorn --app-dir pyconarr main:app --reload --log-config=config/log.yaml
     silent: true
     interactive: true
     deps:
@@ -32,3 +62,10 @@ tasks:
     cmds:
       - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
     silent: true
+  bruno:all:
+    cmds:
+      - task: bruno:test:PR
+  bruno:test:PR:
+    dir: bruno/pyconarr
+    cmds:
+      - bru run --env "Jellyfin_PR"

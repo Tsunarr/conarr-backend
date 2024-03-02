@@ -1,0 +1,20 @@
+meta {
+  name: Info
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Jellyfin_URL}}/System/Info
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  x-emby-authorization: MediaBrowser , Client="Bruno", Device="PC-Dev", DeviceId="Conarr", Version="0.0.0", Token="{{Jellyfin_Token}}"
+}
+
+auth:bearer {
+  token: 
+}

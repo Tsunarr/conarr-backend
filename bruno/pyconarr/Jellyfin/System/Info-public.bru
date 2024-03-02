@@ -1,0 +1,19 @@
+meta {
+  name: Info-public
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Jellyfin_URL}}/System/Info/Public
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 
+}

@@ -12,6 +12,9 @@
     "**/report/**",
     "**/*.svg",
     "**/.linters/**",
-    "LICENSE"
+    "**/tests/**",
+    "**/htmlcov/**",
+    "LICENSE",
+    "coverage.xml"
   ]
 }
