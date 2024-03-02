@@ -46,7 +46,8 @@
     "setuptools",
     "sonarr",
     "testsuites",
-    "uvicorn"
+    "uvicorn",
+    "automerge"
   ],
   "version": "0.2"
 }
