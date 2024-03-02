@@ -30,5 +30,5 @@ tasks:
       - install
   megalinter:test:
     cmds:
-      - docker run --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
+      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
     silent: true
