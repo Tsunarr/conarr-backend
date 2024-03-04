@@ -57,7 +57,8 @@
     "addopts",
     "Pyctuator",
     "lcov",
-    "htmlcov"
+    "htmlcov",
+    "tsunarr"
   ],
   "version": "0.2"
 }

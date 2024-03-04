@@ -14,6 +14,7 @@ RUN apk add --no-cache git \
   npm install -g @usebruno/cli@1.9.2 &&\
   groupmod -g 1337 docker && \
   usermod -aG docker vscode &&\
+  usermod -aG root vscode &&\
   echo "alias ll='ls -l'" >> /home/vscode/.bashrc
 
 USER vscode

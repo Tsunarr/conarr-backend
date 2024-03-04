@@ -34,6 +34,7 @@ version_scheme = "pep440"
 version_provider = "poetry"
 update_changelog_on_bump = true
 major_version_zero = true
+version_files = ["pyproject.toml", "sonar-project.properties"]
 
 [build-system]
 requires = ["poetry-core==1.9.0"]

@@ -6,10 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        DOCKER_GID: 1337
     volumes:
-      - ..:/workspace:cached
+      - ..:/workspace
     command: /bin/sh -c "sleep infinity"
     network_mode: service:spring-boot-admin
   spring-boot-admin:
