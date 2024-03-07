@@ -97,6 +97,24 @@ def test_error_timeout_post_login_user(requests_mock):
     assert response.status_code == 502
     assert response.json() == {"detail": "Failed to contact jellyfin server"}
 
+@pytest.mark.component
+def test_error_timeout_post_login_user_valid(requests_mock):
+    requests_mock.post(
+        config["jellyfin"]["url"] + "/Users/AuthenticateByName",
+        status_code=401,
+    )
+    requests_mock.get(
+        config["jellyfin"]["url"] + "/Users/" + inputs["input_login_user.json"]["Username"],
+            exc=requests.exceptions.ReadTimeout,
+            )
+    response = client.post(
+        "/v1/login",
+        headers={"Content-Type": "application/json"},
+        json=inputs["input_login_user.json"],
+    )
+    assert response.status_code == 401
+    assert response.json() == {"detail": "Login failed"}
+
 
 @pytest.mark.component
 def test_error_wrong_password_post_login_user(requests_mock):
@@ -107,6 +125,24 @@ def test_error_wrong_password_post_login_user(requests_mock):
     requests_mock.get(
          config["jellyfin"]["url"] + "/Users/" + inputs["input_login_user.json"]["Username"],
             status_code=200,)
+    response = client.post(
+        "/v1/login",
+        headers={"Content-Type": "application/json"},
+        json=inputs["input_login_user.json"],
+    )
+    assert response.status_code == 401
+    assert response.json() == {"detail": "Login failed"}
+
+
+@pytest.mark.component
+def test_error_wrong_username_post_login_user(requests_mock):
+    requests_mock.post(
+        config["jellyfin"]["url"] + "/Users/AuthenticateByName",
+        status_code=401,
+    )
+    requests_mock.get(
+        config["jellyfin"]["url"] + "/Users/" + inputs["input_login_user.json"]["Username"],
+            status_code=404,)
     response = client.post(
         "/v1/login",
         headers={"Content-Type": "application/json"},
