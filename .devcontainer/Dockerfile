@@ -11,7 +11,22 @@ RUN apk add --no-cache git \
   py3-hatchling \
   npm &&\
   pip install --no-cache-dir poetry==1.7.1 &&\
-  npm install -g @usebruno/cli@1.9.2 &&\
+  npm install -g \
+  '@usebruno/cli@1.9.2' \
+  '@aws-sdk/credential-providers@<3.529.0' \
+  '@aws-sdk/core@<3.529.0' \
+  '@aws-sdk/client-sts@<3.529.0' \
+  '@aws-sdk/client-cognito-identity@<3.529.0' \
+  '@aws-sdk/client-sso@<3.529.0' \
+  '@aws-sdk/credential-provider-cognito-identity@<3.529.0' \
+  '@aws-sdk/credential-provider-env@<3.529.0' \
+  '@aws-sdk/credential-provider-http@<3.529.0' \
+  '@aws-sdk/credential-provider-ini@<3.529.0' \
+  '@aws-sdk/credential-provider-node@<3.529.0' \
+  '@aws-sdk/credential-provider-process@<3.529.0' \
+  '@aws-sdk/credential-provider-sso@<3.529.0' \
+  '@aws-sdk/credential-provider-web-identity@<3.529.0' \
+  '@aws-sdk/types@<3.529.0' &&\
   groupmod -g 1337 docker && \
   usermod -aG docker vscode &&\
   usermod -aG root vscode &&\
