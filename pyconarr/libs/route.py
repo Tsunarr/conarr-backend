@@ -12,8 +12,8 @@ from pyconarr.libs.docs import (
     description,
     openapi_tags_metadata,
 )
-from pyctuator.pyctuator import Pyctuator
 from pyconarr.libs.jellyfin import valid_user
+from pyctuator.pyctuator import Pyctuator
 
 my_version = get_version()
 
@@ -85,7 +85,7 @@ async def v1_login(login: Login) -> IDVector:
             if valid_user(login):
                 logging.error("user is valid but failed to authenticate")
             else:
-                logging.error("user is invalid")    
+                logging.error("user is invalid")
             raise HTTPException(status_code=r.status_code, detail="Login failed")
         else:
             logging.fatal("failed to contact jellyfin server")
