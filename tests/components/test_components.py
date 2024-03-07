@@ -39,6 +39,10 @@ def test_post_login_admin(requests_mock):
         config["jellyfin"]["url"] + "/Users/AuthenticateByName",
         json=responses["response_login_admin_user.json"],
     )
+    requests_mock.get(
+         config["jellyfin"]["url"] + "/Users/" + inputs["input_login_admin.json"]["Username"],
+            status_code=200,)
+    
     response = client.post(
         "/v1/login",
         headers={"Content-Type": "application/json"},
@@ -60,6 +64,9 @@ def test_post_login_user(requests_mock):
         config["jellyfin"]["url"] + "/Users/AuthenticateByName",
         json=responses["response_login_standard_user.json"],
     )
+    requests_mock.get(
+         config["jellyfin"]["url"] + "/Users/" + inputs["input_login_user.json"]["Username"],
+            status_code=200,)
     response = client.post(
         "/v1/login",
         headers={"Content-Type": "application/json"},
@@ -97,6 +104,9 @@ def test_error_wrong_password_post_login_user(requests_mock):
         config["jellyfin"]["url"] + "/Users/AuthenticateByName",
         status_code=401,
     )
+    requests_mock.get(
+         config["jellyfin"]["url"] + "/Users/" + inputs["input_login_user.json"]["Username"],
+            status_code=200,)
     response = client.post(
         "/v1/login",
         headers={"Content-Type": "application/json"},
