@@ -1,0 +1,29 @@
+meta {
+  name: login_failed_User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Pyconarr_URL}}/v1/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  x-emby-authorization: MediaBrowser , Client="Bruno", Device="Devcontainer", DeviceId="vscode", Version="1.0.0"
+}
+
+body:json {
+  {
+    "Username": "{{Jellyfin_Wrong_User_Username}}",
+    "Pw": "{{Jellyfin_Wrong_User_Pw}}"
+  }
+}
+
+assert {
+  res.status: eq 401
+  res.body.detail: isString
+  res.body.detail: eq Login failed
+}

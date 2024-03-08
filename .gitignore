@@ -196,3 +196,7 @@ pyrightconfig.json
 report.xml
 megalinter-reports/
 report/
+tests/inputs/*real*.json
+tests/responses/*real*.json
+config/pyconarr.yml
+coverage.lcov

@@ -4,5 +4,6 @@
   "task": {
     "path": "go-task",
     "outputTo": "terminal"
-  }
+  },
+  "markiscodecoverage.searchCriteria": "coverage.lcov"
 }

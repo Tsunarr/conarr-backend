@@ -14,7 +14,11 @@
     "**/megalinter-reports/**",
     "coverage.xml",
     "LICENSE",
-    "*.pyc"
+    "*.pyc",
+    "coverage.lcov",
+    "**htmlcov/**",
+    "tests/inputs/**",
+    "tests/responses/**"
   ],
   "language": "en",
   "dictionaries": [
@@ -47,7 +51,17 @@
     "sonarr",
     "testsuites",
     "uvicorn",
-    "automerge"
+    "automerge",
+    "emby",
+    "asctime",
+    "levelname",
+    "testpaths",
+    "addopts",
+    "Pyctuator",
+    "lcov",
+    "htmlcov",
+    "tsunarr",
+    "debugpy"
   ],
   "version": "0.2"
 }

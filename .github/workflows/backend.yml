@@ -39,8 +39,10 @@ jobs:
         uses: "pnorton5432/setup-task@v1"
         with:
           task-version: 3.34.1
+      - name: Get config file from secrets
+        run: echo ${{ secrets.PYCONARR_CONFIG_FILE }} | base64 --decode > config/pyconarr.yml
       - name: Testing app
-        run: task poetry:test
+        run: task poetry:test:ci
       - name: get reports
         uses: pmeier/pytest-results-action@main
         if: success() || failure()
@@ -52,6 +54,11 @@ jobs:
         with:
           coverageFile: coverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
     strategy:

@@ -1,0 +1,12 @@
+{
+  "User": {
+    "Name": "admin",
+    "Policy": {
+      "IsAdministrator": true
+    },
+    "Configuration": {
+      "AudioLanguagePreference": "fre",
+      "SubtitleLanguagePreference": "fre"
+    }
+  }
+}

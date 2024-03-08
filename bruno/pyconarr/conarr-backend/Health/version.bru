@@ -1,0 +1,17 @@
+meta {
+  name: version
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Pyconarr_URL}}/version
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.jellyfin.version: matches [0-9]\.[0-9]\.[0-9]
+  res.body.conarr.version: matches [0-9]\.[0-9]\.[0-9]
+}

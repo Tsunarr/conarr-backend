@@ -1,0 +1,16 @@
+meta {
+  name: list_users
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Jellyfin_URL}}/Users
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  x-emby-authorization: MediaBrowser , Client="Bruno", Device="PC-Dev", DeviceId="Conarr", Version="0.0.0", Token="{{Jellyfin_Token}}"
+}
