@@ -16,7 +16,9 @@
     "LICENSE",
     "*.pyc",
     "coverage.lcov",
-    "**htmlcov/**"
+    "**htmlcov/**",
+    "tests/inputs/**",
+    "tests/responses/**"
   ],
   "language": "en",
   "dictionaries": [
@@ -58,7 +60,8 @@
     "Pyctuator",
     "lcov",
     "htmlcov",
-    "tsunarr"
+    "tsunarr",
+    "debugpy"
   ],
   "version": "0.2"
 }

@@ -111,8 +111,7 @@ def test_error_timeout_post_login_user_valid(requests_mock):
         status_code=401,
     )
     requests_mock.get(
-        config["jellyfin"]["url"]
-        + "/Users",
+        config["jellyfin"]["url"] + "/Users",
         exc=requests.exceptions.ReadTimeout,
     )
     response = client.post(
@@ -131,8 +130,7 @@ def test_error_wrong_password_post_login_user(requests_mock):
         status_code=401,
     )
     requests_mock.get(
-        config["jellyfin"]["url"]
-        + "/Users",
+        config["jellyfin"]["url"] + "/Users",
         status_code=200,
         json=responses["response_list_users.json"],
     )
@@ -152,8 +150,7 @@ def test_error_wrong_username_post_login_user(requests_mock):
         status_code=401,
     )
     requests_mock.get(
-        config["jellyfin"]["url"]
-        + "/Users",
+        config["jellyfin"]["url"] + "/Users",
         status_code=200,
         json=responses["response_list_users.json"],
     )

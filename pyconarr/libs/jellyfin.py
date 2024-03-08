@@ -1,4 +1,5 @@
 import logging
+
 import requests
 from fastapi import HTTPException
 from pyconarr.libs.config import config, get_version
@@ -23,8 +24,8 @@ def valid_user(login: Login) -> bool:
     except requests.exceptions.ReadTimeout:
         raise HTTPException(status_code=502, detail="Failed to contact jellyfin server")
     if r.status_code == 200:
-        list_users=r.json()
-        if any(login.Username == user['Name'] for user in list_users):
+        list_users = r.json()
+        if any(login.Username == user["Name"] for user in list_users):
             return True
         else:
             return False
