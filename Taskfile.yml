@@ -42,6 +42,14 @@ tasks:
     deps:
       - docker:build
     silent: true
+  github:generate-config:
+    silent: true
+    dir: config
+    cmds:
+      - cp pyconarr.yml pyconarr.github.yml
+      - poetry run yq -i -y '.jellyfin.admin_token = ""' pyconarr.github.yml
+      - base64 -w 0 pyconarr.yml
+      - rm -f pyconarr.github.yml
   install:
     cmds:
       - poetry install

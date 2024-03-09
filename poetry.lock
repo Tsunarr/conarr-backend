@@ -1156,6 +1156,37 @@ files = [
 ]
 
 [[package]]
+name = "xmltodict"
+version = "0.13.0"
+description = "Makes working with XML feel like you are working with JSON"
+optional = false
+python-versions = ">=3.4"
+files = [
+    {file = "xmltodict-0.13.0-py2.py3-none-any.whl", hash = "sha256:aa89e8fd76320154a40d19a0df04a4695fb9dc5ba977cbb68ab3e4eb225e7852"},
+    {file = "xmltodict-0.13.0.tar.gz", hash = "sha256:341595a488e3e01a85a9d8911d8912fd922ede5fecc4dce437eb4b6c8d037e56"},
+]
+
+[[package]]
+name = "yq"
+version = "3.2.3"
+description = "Command-line YAML/XML processor - jq wrapper for YAML/XML documents"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "yq-3.2.3-py3-none-any.whl", hash = "sha256:b50c91894dad9894d1d36ea77d5722d5495cac9482d2351e55089360a90709ae"},
+    {file = "yq-3.2.3.tar.gz", hash = "sha256:29c8fe1d36b4f64163f4d01314c6ae217539870f610216dee6025dfb5eafafb1"},
+]
+
+[package.dependencies]
+argcomplete = ">=1.8.1"
+PyYAML = ">=5.3.1"
+tomlkit = ">=0.11.6"
+xmltodict = ">=0.11.0"
+
+[package.extras]
+tests = ["build", "coverage", "mypy", "ruff", "wheel"]
+
+[[package]]
 name = "zipp"
 version = "3.17.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -1173,4 +1204,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
-content-hash = "bba6a29b682bcd0dc7587541ddb954acea7fe3188f27facceaa14a54de4d579a"
+content-hash = "f49b7d6559a672e0d90cbd74429053a09d01ec18ac00edeb02f0df933d38523b"
