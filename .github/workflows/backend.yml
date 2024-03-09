@@ -131,6 +131,8 @@ jobs:
       - name: get current tag
         id: get_tag
         run: 'echo VERSION="$(echo "$GITHUB_REF" | cut -d''/'' -f 3)" >> "${GITHUB_OUTPUT}"'
+      - name: wait for pypi to update
+        run: sleep 30
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
