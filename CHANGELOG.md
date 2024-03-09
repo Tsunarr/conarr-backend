@@ -1,3 +1,9 @@
+## 0.2.2a7 (2024-03-09)
+
+### Fix
+
+- add execution to entrypoint
+
 ## 0.2.2a6 (2024-03-09)
 
 ### Fix
