@@ -16,11 +16,12 @@ COPY config/pyconarr.yml.sample config/pyconarr.yml
 COPY config/log.yaml config/log.yaml
 COPY entrypoint.sh entrypoint.sh
 
+RUN chmod +x entrypoint.sh
+
 USER pyconarr
 RUN virtualenv .venv &&\
   .venv/bin/pip install --no-cache-dir --upgrade pip &&\
-  .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION} &&\
-  chmod +x entrypoint.sh
+  .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION}
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "nc", "localhost", "8000" ]
