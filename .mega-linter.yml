@@ -28,6 +28,8 @@ PYTHON_BANDIT_CONFIG_FILE: .linters/.bandit.yml
 # Configuration for JSCPD
 COPYPASTE_JSCPD_CONFIG_FILE: .linters/.jscpd.json
 
+SPELL_CSPELL_CONFIG_FILE: .linters/.cspell.json
+
 SPELL_CSPELL_CLI_LINT_MODE: project
 SPELL_CSPELL_ARGUMENTS: "."
 

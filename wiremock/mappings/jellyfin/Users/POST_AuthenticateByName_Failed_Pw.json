@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/jellyfin/Users/AuthenticateByName",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.Username == 'user')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.Pw == 'password')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 401
+  }
+}

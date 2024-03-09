@@ -1,0 +1,13 @@
+vars {
+  Jellyfin_URL: http://wiremock:8080/jellyfin
+  Pyconarr_URL: http://localhost:8000
+  Jellyfin_Token: {{process.env.JELLYFIN_TOKEN}}
+  Jellyfin_Admin_Username: {{process.env.JELLYFIN_ADMIN_USERNAME}}
+  Jellyfin_Admin_Pw: {{process.env.JELLYFIN_ADMIN_PW}}
+  Jellyfin_User_Username: {{process.env.JELLYFIN_USER_USERNAME}}
+  Jellyfin_User_Pw: {{process.env.JELLYFIN_USER_PW}}
+  Jellyfin_Wrong_Pw_Username: {{process.env.JELLYFIN_WRONG_PASSWORD_USERNAME}}
+  Jellyfin_Wrong_Pw_Pw: {{process.env.JELLYFIN_WRONG_PASSWORD_PW}}
+  Jellyfin_Wrong_User_Username: {{process.env.JELLYFIN_WRONG_USER_USERNAME}}
+  Jellyfin_Wrong_User_Pw: {{process.env.JELLYFIN_WRONG_USER_PW}}
+}

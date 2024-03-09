@@ -1,0 +1,9 @@
+{
+  "LocalAddress": "wiremock",
+  "ServerName": "wiremock",
+  "Version": "10.8.13",
+  "ProductName": "Jellyfin Server",
+  "OperatingSystem": "Linux",
+  "Id": "string",
+  "StartupWizardCompleted": true
+}

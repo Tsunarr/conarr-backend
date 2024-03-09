@@ -8,6 +8,16 @@
       "module": "uvicorn",
       "args": ["pyconarr.main:app", "--reload"],
       "jinja": true
+    },
+    {
+      "name": "Python: Pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-m", "unit or component", "-s", "--pdb"],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "cwd": "${workspaceFolder}"
     }
   ]
 }

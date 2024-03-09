@@ -5,5 +5,9 @@
     "path": "go-task",
     "outputTo": "terminal"
   },
-  "markiscodecoverage.searchCriteria": "coverage.lcov"
+  "markiscodecoverage.searchCriteria": "coverage.lcov",
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "cSpell.import": [".config/linters/.cspell.json"]
 }

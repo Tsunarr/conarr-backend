@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/jellyfin/System/Info"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "jellyfin/System/Info/GET_root.json"
+  }
+}
