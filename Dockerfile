@@ -7,8 +7,7 @@ RUN apk upgrade --no-cache &&\
   apk add --no-cache \
   python3 \
   py3-pip \
-  py3-virtualenv \
-  curl &&\
+  py3-virtualenv &&\
   adduser -D pyconarr
 
 WORKDIR /home/pyconarr/
@@ -23,4 +22,4 @@ RUN virtualenv .venv &&\
   .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION}
 
 ENTRYPOINT [ "./entrypoint.sh" ]
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "curl", "http://localhost:8000/version" ]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "nc", "localhost", "8000" ]
