@@ -1,12 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "pyconnar",
-  "workspaceFolder": "/workspace",
-  "remoteUser": "vscode",
   "customizations": {
     "vscode": {
       "extensions": [
+        "bennycode.sort-everything",
         "bruno-api-client.bruno",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
@@ -27,17 +24,18 @@
       ]
     }
   },
-  "remoteEnv": {
-    "LOCALWORKSPACE": "${localWorkspaceFolder}"
-  },
+  "dockerComposeFile": "docker-compose.yml",
   "forwardPorts": [8000, 5000, "spring-boot-admin:8080"],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
   "portsAttributes": {
-    "8000": {
-      "label": "Backend API",
-      "onAutoForward": "silent"
-    },
     "5000": {
       "label": "Backend pyctuator",
+      "onAutoForward": "silent"
+    },
+    "8000": {
+      "label": "Backend API",
       "onAutoForward": "silent"
     },
     "spring-boot-admin:8080": {
@@ -45,9 +43,12 @@
       "onAutoForward": "openBrowserOnce"
     }
   },
+  "postCreateCommand": "poetry install",
   "privileged": true,
-  "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  ],
-  "postCreateCommand": "poetry install"
+  "remoteEnv": {
+    "LOCALWORKSPACE": "${localWorkspaceFolder}"
+  },
+  "remoteUser": "vscode",
+  "service": "pyconnar",
+  "workspaceFolder": "/workspace"
 }

@@ -1,17 +1,60 @@
 # https://taskfile.dev
 
-version: "3"
-
 tasks:
+  bruno:all:
+    cmds:
+      - task: bruno:test:PR
+  bruno:test:PR:
+    cmds:
+      - bru run --env "Jellyfin_PR"
+    dir: bruno/pyconarr
+    silent: true
+  docker:build:
+    cmds:
+      - docker build -t pyconarr:test .
+    silent: true
+  docker:test:
+    cmds:
+      - docker run --rm pyconarr:test python --version
+    deps:
+      - docker:build
+    silent: true
+  docker:it:
+    cmds:
+      - docker run -it --rm pyconarr:test "/bin/sh"
+    deps:
+      - docker:build
+    silent: true
   install:
-    internal: true
     cmds:
       - poetry install
-  poetry:coverage:
     internal: true
+    silent: true
+  megalinter:test:
+    cmds:
+      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w
+        /tmp/lint oxsecurity/megalinter:v7
+    silent: true
+  poetry:build:
+    cmds:
+      - poetry build
+    deps:
+      - install
+    silent: true
+  poetry:coverage:
     cmds:
       - poetry run coverage xml
       - poetry run coverage lcov
+    internal: true
+    silent: true
+  poetry:run:
+    cmds:
+      - poetry run uvicorn --app-dir pyconarr main:app --reload
+        --log-config=config/log.yaml
+    deps:
+      - install
+    interactive: true
+    silent: true
   poetry:test:all:
     cmds:
       - poetry run pytest
@@ -21,51 +64,28 @@ tasks:
     cmds:
       - poetry run pytest -m "unit or component"
       - task: poetry:coverage
-    silent: true
     deps:
       - install
-  poetry:test:unit:
-    cmds:
-      - poetry run pytest -m unit
-      - task: poetry:coverage
     silent: true
-    deps:
-      - install
   poetry:test:component:
     cmds:
       - poetry run pytest -m component
       - task: poetry:coverage
-    silent: true
     deps:
       - install
+    silent: true
   poetry:test:integration:
     cmds:
       - poetry run pytest -m integration
       - poetry run coverage xml
-    silent: true
     deps:
       - install
-  poetry:build:
-    cmds:
-      - poetry build
     silent: true
+  poetry:test:unit:
+    cmds:
+      - poetry run pytest -m unit
+      - task: poetry:coverage
     deps:
       - install
-  poetry:run:
-    cmds:
-      - poetry run uvicorn --app-dir pyconarr main:app --reload --log-config=config/log.yaml
     silent: true
-    interactive: true
-    deps:
-      - install
-  megalinter:test:
-    cmds:
-      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
-    silent: true
-  bruno:all:
-    cmds:
-      - task: bruno:test:PR
-  bruno:test:PR:
-    dir: bruno/pyconarr
-    cmds:
-      - bru run --env "Jellyfin_PR"
+version: "3"
