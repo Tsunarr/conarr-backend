@@ -19,7 +19,8 @@ COPY entrypoint.sh entrypoint.sh
 USER pyconarr
 RUN virtualenv .venv &&\
   .venv/bin/pip install --no-cache-dir --upgrade pip &&\
-  .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION}
+  .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION} &&\
+  chmod +x entrypoint.sh
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "nc", "localhost", "8000" ]
