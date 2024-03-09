@@ -8,7 +8,7 @@ import yaml
 
 def get_version():
     try:
-        my_version = metadata.version("conarr-backend")
+        my_version = metadata.version("pyconarr")
     except metadata.PackageNotFoundError:
         my_version = toml.load(Path(os.getcwd()) / "pyproject.toml")["tool"]["poetry"][
             "version"

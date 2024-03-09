@@ -20,12 +20,15 @@ tasks:
       - cz bump --dry-run --prerelease alpha
     silent: true
   docker:build:
+    vars:
+      PYCONARR_VERSION:
+        sh: poetry run toml get --toml-path pyproject.toml tool.poetry.version
     cmds:
-      - docker build -t pyconarr:test .
+      - docker build -t pyconarr:test --build-arg PYCONARR_VERSION={{.PYCONARR_VERSION}} .
     silent: true
   docker:test:
     cmds:
-      - docker run --rm pyconarr:test python --version
+      - docker run --rm pyconarr:test
     deps:
       - docker:build
     silent: true

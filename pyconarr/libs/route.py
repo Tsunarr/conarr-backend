@@ -18,7 +18,7 @@ from pyctuator.pyctuator import Pyctuator
 my_version = get_version()
 
 logging.info(
-    "Conarr-backend starting in version " + my_version + " in directory " + os.getcwd()
+    "Pyconarr starting in version " + my_version + " in directory " + os.getcwd()
 )
 
 app = FastAPI(
