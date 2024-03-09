@@ -2,6 +2,7 @@
 FROM alpine:3.19
 
 ARG PYCONARR_VERSION
+EXPOSE 8000
 
 RUN apk upgrade --no-cache &&\
   apk add --no-cache \
