@@ -1,3 +1,9 @@
+## 0.2.2a6 (2024-03-09)
+
+### Fix
+
+- change curl healthcheck by nc
+
 ## 0.2.2a5 (2024-03-09)
 
 ### Fix
