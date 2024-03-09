@@ -15,7 +15,7 @@ tasks:
       - git push
       - git push --tags
     silent: true
-  commitizen:test:pre-release:
+  commitizen:test:pre-rel:
     cmds:
       - cz bump --dry-run --prerelease alpha
     silent: true
