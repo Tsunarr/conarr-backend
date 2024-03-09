@@ -1,3 +1,9 @@
+## 0.2.1 (2024-03-09)
+
+### Fix
+
+- **deps**: update dependency uvicorn to ^0.28.0 (#13)
+
 ## 0.2.0 (2024-03-08)
 
 ### Feat
