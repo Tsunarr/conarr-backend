@@ -3,6 +3,7 @@ jellyfin:
   url: "https://jellyfin.mydomain.com"
   admin_token: ""
 pyctuator:
+  name: "pyconarr-sample"
   app_url: http://127.0.0.1:8000
   endpoint_url: http://127.0.0.1:8000/pyctuator
   registration_url: http://127.0.0.1:8080/instances

@@ -1,13 +1,26 @@
+# kics-scan disable=d3499f6d-1651-41bb-a9a7-de925fea487b,02d9c71f-3ee8-4986-9c27-1a20d0d19bfc
 FROM alpine:3.19
 
 ARG PYCONARR_VERSION
 
-RUN apk update --no-cache &&\
+RUN apk upgrade --no-cache &&\
   apk add --no-cache \
   python3 \
-  py3-pip &&\
-  pip install --break-system-packages pyconarr==${PYCONARR_VERSION}
+  py3-pip \
+  py3-virtualenv \
+  curl &&\
+  adduser -D pyconarr
 
-COPY config/pyconarr.yml.sample /config/pyconarr.yml
+WORKDIR /home/pyconarr/
 
-ENTRYPOINT [ "uvicorn", "pyconarr.main:app" ]
+COPY config/pyconarr.yml.sample config/pyconarr.yml
+COPY config/log.yaml config/log.yaml
+COPY entrypoint.sh entrypoint.sh
+
+USER pyconarr
+RUN virtualenv .venv &&\
+  .venv/bin/pip install --no-cache-dir --upgrade pip &&\
+  .venv/bin/pip install --no-cache-dir pyconarr==${PYCONARR_VERSION}
+
+ENTRYPOINT [ "./entrypoint.sh" ]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "curl", "http://localhost:8000/version" ]

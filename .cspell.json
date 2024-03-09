@@ -61,7 +61,9 @@
     "lcov",
     "htmlcov",
     "tsunarr",
-    "debugpy"
+    "debugpy",
+    "adduser",
+    "kics"
   ],
   "version": "0.2"
 }

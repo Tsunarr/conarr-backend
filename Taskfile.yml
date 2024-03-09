@@ -28,13 +28,17 @@ tasks:
     silent: true
   docker:test:
     cmds:
-      - docker run --rm pyconarr:test
+      - docker run --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test
     deps:
       - docker:build
     silent: true
+  docker:kill:
+    cmds:
+      - docker kill pyconarr_test
+    silent: true
   docker:it:
     cmds:
-      - docker run -it --rm pyconarr:test "/bin/sh"
+      - docker run -it --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test "/bin/sh"
     deps:
       - docker:build
     silent: true
