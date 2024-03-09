@@ -1,3 +1,10 @@
+## 0.2.2a5 (2024-03-09)
+
+### Fix
+
+- taskfile folder syntax on vscode extension
+- docker image generation
+
 ## 0.2.2a4 (2024-03-09)
 
 ## 0.2.2a3 (2024-03-09)
