@@ -9,6 +9,16 @@ tasks:
       - bru run --env "Jellyfin_PR"
     dir: bruno/pyconarr
     silent: true
+  commitizen:pre-release:alpha:
+    cmds:
+      - cz bump --prerelease alpha
+      - git push
+      - git push --tags
+    silent: true
+  commitizen:test:pre-release:
+    cmds:
+      - cz bump --dry-run --prerelease alpha
+    silent: true
   docker:build:
     cmds:
       - docker build -t pyconarr:test .
