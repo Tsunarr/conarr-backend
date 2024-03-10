@@ -143,3 +143,29 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             PYCONARR_VERSION=${{ steps.get_tag.outputs.VERSION }}
+  deploy_to_pp:
+    name: Deploy on Pre-production
+    if: startsWith(github.ref, 'refs/tags/') # only publish to PyPI on tag pushes
+    runs-on: ubuntu-latest
+    environment:
+      name: pre-prod
+      url: https://pyconarr-pp.tsuna.fr
+    needs:
+      - push_to_docker_hub
+    steps:
+      - name: Call portainer webhook
+        #checkov:skip=CKV_GHA_3: Call a webhook to deploy the app
+        run: 'curl -X POST -H "Content-Type: application/json" "${{ secrets.PORTAINER_WEBHOOK_URL }}"'
+  deploy_to_pr:
+    name: Deploy on production
+    if: startsWith(github.ref, 'refs/tags/') # only publish to PyPI on tag pushes
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: https://pyconarr.tsuna.fr
+    needs:
+      - push_to_docker_hub
+    steps:
+      - name: Call portainer webhook
+        #checkov:skip=CKV_GHA_3: Call a webhook to deploy the app
+        run: 'curl -X POST -H "Content-Type: application/json" "${{ secrets.PORTAINER_WEBHOOK_URL }}"'

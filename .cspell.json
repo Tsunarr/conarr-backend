@@ -63,7 +63,9 @@
     "tsunarr",
     "debugpy",
     "adduser",
-    "kics"
+    "kics",
+    "healthcheck",
+    "taskfile"
   ],
   "version": "0.2"
 }
