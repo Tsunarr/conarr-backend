@@ -1,3 +1,9 @@
+## 0.2.2 (2024-03-13)
+
+### Fix
+
+- **deps**: update dependency setuptools to v69.2.0 (#18)
+
 ## 0.2.1 (2024-03-09)
 
 ### Fix
