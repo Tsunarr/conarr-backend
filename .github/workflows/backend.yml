@@ -87,7 +87,7 @@ jobs:
       - name: Build app
         run: task poetry:build
       - name: Store the distribution packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-package-distributions-${{ matrix.python-version }}
           path: dist/
@@ -105,7 +105,7 @@ jobs:
       id-token: write
     steps:
       - name: Download all the dists
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: python-package-distributions
           path: dist/
