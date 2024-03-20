@@ -1,3 +1,9 @@
+## 0.3.2 (2024-03-20)
+
+### Fix
+
+- **deps**: update dependency uvicorn to ^0.29.0 (#20)
+
 ## 0.3.1 (2024-03-20)
 
 ### Fix
