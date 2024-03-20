@@ -1,17 +1,90 @@
 # https://taskfile.dev
 
-version: "3"
-
 tasks:
+  bruno:test-PR:
+    cmds:
+      - bru run --env "Jellyfin_PR"
+    dir: bruno/pyconarr
+    silent: true
+  bruno:test-wiremock:
+    cmds:
+      - bru run --env "wiremock"
+    dir: bruno/pyconarr
+    silent: true
+  commitizen:pre-release:alpha:
+    cmds:
+      - cz bump --prerelease alpha
+      - git push
+      - git push --tags
+    silent: true
+  commitizen:test:pre-release:
+    cmds:
+      - cz bump --dry-run --prerelease alpha
+    silent: true
+  docker:build:
+    vars:
+      PYCONARR_VERSION:
+        sh: poetry run toml get --toml-path pyproject.toml tool.poetry.version
+    cmds:
+      - docker build -t pyconarr:test --build-arg PYCONARR_VERSION={{.PYCONARR_VERSION}} .
+    silent: true
+  docker:test:
+    cmds:
+      - docker run --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test
+    deps:
+      - docker:build
+    silent: true
+  docker:kill:
+    cmds:
+      - docker kill pyconarr_test
+    silent: true
+  docker:it:
+    cmds:
+      - docker run -it --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test "/bin/sh"
+    deps:
+      - docker:build
+    silent: true
+  github:generate-config:
+    silent: true
+    dir: config
+    cmds:
+      - cp pyconarr.yml pyconarr.github.yml
+      - poetry run yq -i -y '.jellyfin.admin_token = ""' pyconarr.github.yml
+      - base64 -w 0 pyconarr.yml
+      - rm -f pyconarr.github.yml
   install:
-    internal: true
     cmds:
       - poetry install
-  poetry:coverage:
     internal: true
+    silent: true
+  megalinter:local:
+    cmds:
+      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w
+        /tmp/lint oxsecurity/megalinter:v7
+    silent: true
+  megalinter:devcontainer_in_wsl:
+    cmds:
+      - docker run --pull=always --rm -v '\\wsl.localhost\Ubuntu\'"${LOCALWORKSPACE}:$(pwd)" -w
+        "$(pwd)" -e DEFAULT_WORKSPACE="$(pwd)" oxsecurity/megalinter:v7 --help
+    silent: true
+  poetry:build:
+    cmds:
+      - poetry build
+    silent: true
+  poetry:coverage:
     cmds:
       - poetry run coverage xml
       - poetry run coverage lcov
+    internal: true
+    silent: true
+  poetry:run:
+    cmds:
+      - poetry run uvicorn --app-dir pyconarr main:app --reload
+        --log-config=config/log.yaml
+    deps:
+      - install
+    interactive: true
+    silent: true
   poetry:test:all:
     cmds:
       - poetry run pytest
@@ -21,51 +94,28 @@ tasks:
     cmds:
       - poetry run pytest -m "unit or component"
       - task: poetry:coverage
-    silent: true
     deps:
       - install
-  poetry:test:unit:
-    cmds:
-      - poetry run pytest -m unit
-      - task: poetry:coverage
     silent: true
-    deps:
-      - install
   poetry:test:component:
     cmds:
       - poetry run pytest -m component
       - task: poetry:coverage
-    silent: true
     deps:
       - install
+    silent: true
   poetry:test:integration:
     cmds:
       - poetry run pytest -m integration
       - poetry run coverage xml
-    silent: true
     deps:
       - install
-  poetry:build:
-    cmds:
-      - poetry build
     silent: true
+  poetry:test:unit:
+    cmds:
+      - poetry run pytest -m unit
+      - task: poetry:coverage
     deps:
       - install
-  poetry:run:
-    cmds:
-      - poetry run uvicorn --app-dir pyconarr main:app --reload --log-config=config/log.yaml
     silent: true
-    interactive: true
-    deps:
-      - install
-  megalinter:test:
-    cmds:
-      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w /tmp/lint oxsecurity/megalinter:v7
-    silent: true
-  bruno:all:
-    cmds:
-      - task: bruno:test:PR
-  bruno:test:PR:
-    dir: bruno/pyconarr
-    cmds:
-      - bru run --env "Jellyfin_PR"
+version: "3"

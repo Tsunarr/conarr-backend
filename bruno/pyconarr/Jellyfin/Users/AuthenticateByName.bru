@@ -21,3 +21,7 @@ body:json {
     "Pw": "{{Jellyfin_Admin_Pw}}"
   }
 }
+
+assert {
+  res.status: eq 200
+}

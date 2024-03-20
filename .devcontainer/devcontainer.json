@@ -1,17 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "pyconnar",
-  "workspaceFolder": "/workspace",
-  "remoteUser": "vscode",
   "customizations": {
     "vscode": {
       "extensions": [
+        "bennycode.sort-everything",
         "bruno-api-client.bruno",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
         "GitHub.copilot",
         "github.vscode-github-actions",
+        "markis.code-coverage",
         "mhutchie.git-graph",
         "mikestead.dotenv",
         "ms-azuretools.vscode-docker",
@@ -27,27 +25,28 @@
       ]
     }
   },
-  "remoteEnv": {
-    "LOCALWORKSPACE": "${localWorkspaceFolder}"
-  },
-  "forwardPorts": [8000, 5000, "spring-boot-admin:8080"],
+  "dockerComposeFile": "docker-compose.yml",
+  "forwardPorts": [8000, "wiremock:8080"],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
   "portsAttributes": {
     "8000": {
       "label": "Backend API",
       "onAutoForward": "silent"
     },
-    "5000": {
-      "label": "Backend pyctuator",
-      "onAutoForward": "silent"
-    },
-    "spring-boot-admin:8080": {
-      "label": "Spring Boot Admin",
-      "onAutoForward": "openBrowserOnce"
+    "wiremock:8080": {
+      "label": "Wiremock",
+      "onAutoForward": "notify"
     }
   },
+  "postCreateCommand": "poetry install",
   "privileged": true,
-  "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  ],
-  "postCreateCommand": "poetry install"
+  "remoteEnv": {
+    "LOCALWORKSPACE": "${localWorkspaceFolder}"
+  },
+  "remoteUser": "vscode",
+  "name": "Pyconarr",
+  "service": "pyconnar",
+  "workspaceFolder": "/workspace"
 }

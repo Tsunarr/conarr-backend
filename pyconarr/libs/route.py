@@ -13,12 +13,11 @@ from pyconarr.libs.docs import (
     openapi_tags_metadata,
 )
 from pyconarr.libs.jellyfin import valid_user
-from pyctuator.pyctuator import Pyctuator
 
 my_version = get_version()
 
 logging.info(
-    "Conarr-backend starting in version " + my_version + " in directory " + os.getcwd()
+    "Pyconarr starting in version " + my_version + " in directory " + os.getcwd()
 )
 
 app = FastAPI(
@@ -31,15 +30,6 @@ app = FastAPI(
         "name": "GPL v3",
         "identifier": "GPL-3.0-or-later",
     },
-)
-
-
-Pyctuator(
-    app,
-    "Pyconarr",
-    app_url=config["pyctuator"]["app_url"],
-    pyctuator_endpoint_url=config["pyctuator"]["endpoint_url"],
-    registration_url=config["pyctuator"]["registration_url"],
 )
 
 

@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/jellyfin/Users"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "jellyfin/Users/GET_root.json"
+  }
+}

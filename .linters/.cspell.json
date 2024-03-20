@@ -4,21 +4,22 @@
     "**/vscode-extension/**",
     "**/.git/**",
     "**/.pnpm-lock.json",
-    ".vscode",
-    "megalinter",
-    "package-lock.json",
-    "report",
-    ".gitignore",
+    "**/.vscode",
+    "**/megalinter",
+    "**/package-lock.json",
+    "**/report",
+    "**/.gitignore",
     "**/.linters/**",
-    ".mega-linter.yml",
+    "**/.mega-linter.yml",
     "**/megalinter-reports/**",
-    "coverage.xml",
-    "LICENSE",
-    "*.pyc",
-    "coverage.lcov",
+    "**/coverage.xml",
+    "**/LICENSE",
+    "**/*.pyc",
+    "**/coverage.lcov",
     "**htmlcov/**",
-    "tests/inputs/**",
-    "tests/responses/**"
+    "**/tests/inputs/**",
+    "**/tests/responses/**",
+    "**/wiremock"
   ],
   "language": "en",
   "dictionaries": [
@@ -61,7 +62,12 @@
     "lcov",
     "htmlcov",
     "tsunarr",
-    "debugpy"
+    "debugpy",
+    "adduser",
+    "kics",
+    "healthcheck",
+    "taskfile",
+    "wiremock"
   ],
   "version": "0.2"
 }

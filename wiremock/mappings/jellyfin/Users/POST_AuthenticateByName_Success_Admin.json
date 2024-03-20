@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/jellyfin/Users/AuthenticateByName",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.Username == 'pyconarr_admin')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.Pw != 'password')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "jellyfin/Users/POST_AuthenticateByName_Success_Admin.json"
+  }
+}

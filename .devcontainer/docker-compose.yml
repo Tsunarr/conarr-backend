@@ -9,6 +9,8 @@ services:
     volumes:
       - ..:/workspace
     command: /bin/sh -c "sleep infinity"
-    network_mode: service:spring-boot-admin
-  spring-boot-admin:
-    image: michayaak/spring-boot-admin:2.3.0
+  wiremock:
+    image: wiremock/wiremock
+    command: "--verbose"
+    volumes:
+      - ../wiremock:/home/wiremock

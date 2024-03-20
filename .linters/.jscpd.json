@@ -14,7 +14,8 @@
     "**/.linters/**",
     "**/tests/**",
     "**/htmlcov/**",
-    "LICENSE",
-    "coverage.xml"
+    "**/LICENSE",
+    "**/coverage.xml",
+    "**/wiremock/**"
   ]
 }
