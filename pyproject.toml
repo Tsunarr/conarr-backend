@@ -11,7 +11,7 @@ authors = ["Clem <author@clem.fr>", "Tsuna <admin@tsuna.fr>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 fastapi = "0.110.0"
-uvicorn = "^0.28.0"
+uvicorn = "^0.29.0"
 toml = "^0.10.2"
 setuptools = "^69.1.1"
 requests = "^2.31.0"
