@@ -1,3 +1,9 @@
+## 0.3.2a0 (2024-03-20)
+
+### Fix
+
+- add docker url on workflow
+
 ## 0.3.1 (2024-03-20)
 
 ### Fix
