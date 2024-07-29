@@ -13,7 +13,7 @@ python = ">=3.9,<4.0"
 fastapi = "0.110.0"
 uvicorn = "^0.29.0"
 toml = "^0.10.2"
-setuptools = "^69.1.1"
+setuptools = "^72.0.0"
 requests = "^2.31.0"
 pyyaml = "^6.0.1"
 
