@@ -10,8 +10,8 @@ authors = ["Clem <author@clem.fr>", "Tsuna <admin@tsuna.fr>"]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-fastapi = "0.112.2"
-uvicorn = "^0.30.0"
+fastapi = "0.115.2"
+uvicorn = "^0.32.0"
 toml = "^0.10.2"
 setuptools = "^69.1.1"
 requests = "^2.31.0"
@@ -39,7 +39,7 @@ major_version_zero = true
 version_files = ["pyproject.toml", "sonar-project.properties"]
 
 [build-system]
-requires = ["poetry-core==1.9.0"]
+requires = ["poetry-core==1.9.1"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
