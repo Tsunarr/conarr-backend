@@ -67,7 +67,9 @@
     "kics",
     "healthcheck",
     "taskfile",
-    "wiremock"
+    "wiremock",
+    "dotenv",
+    "taskfiles"
   ],
   "version": "0.2"
 }

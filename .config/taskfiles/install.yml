@@ -1,0 +1,38 @@
+---
+version: "3"
+
+includes:
+  git:
+    taskfile: ./common/init/git.yml
+    optional: true
+  bruno:
+    taskfile: ./common/init/bruno.yml
+    optional: true
+  python3:
+    taskfile: ./common/init/python3.yml
+    optional: true
+  commitizen:
+    taskfile: ./common/init/commitizen.yml
+    optional: true
+  task:
+    taskfile: ./common/init/task.yml
+    optional: true
+  docker:
+    taskfile: ./common/init/docker.yml
+    optional: true
+
+tasks:
+  deps:
+    silent: true
+    internal: true
+    cmds:
+      - task: git:ensure
+      - task: bruno:ensure
+      - task: python3:ensure:pip
+      - task: python3:ensure:pipx
+      - task: python3:ensure:poetry
+      - task: python3:ensure:poetry:dependencies
+      - task: commitizen:ensure
+      - task: task:ensure
+      - task: docker:ensure
+      - task: docker:socket:sync

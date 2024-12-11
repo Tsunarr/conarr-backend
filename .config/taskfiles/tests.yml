@@ -1,0 +1,43 @@
+---
+version: "3"
+
+includes:
+  bruno:
+    taskfile: ./common/bruno.yml
+    optional: true
+    dir: ../..
+  docker:
+    taskfile: ./common/docker.yml
+    optional: true
+    dir: ../..
+
+tasks:
+  bruno:PR:
+    cmds:
+      - task: bruno:test
+        vars:
+          BRUNO_ENV: "Jellyfin_PR"
+          BRUNO_DIR: "bruno/pyconarr"
+  bruno:wiremock:
+    cmds:
+      - task: bruno:test
+        vars:
+          BRUNO_ENV: "wiremock"
+          BRUNO_DIR: "bruno/pyconarr"
+  docker:
+    cmds:
+      - task: docker:test
+        vars:
+          DOCKER_IMAGE_NAME: "pyconarr"
+          DOCKER_IMAGE_TAG: "test"
+          DOCKER_MOUNTS: "-v ${LOCALWORKSPACE}/config:/home/pyconarr/config"
+          DOCKER_RUN_OPTIONS: "-it"
+
+  docker:it:
+    cmds:
+      - task: docker:test
+        vars:
+          DOCKER_IMAGE_NAME: "pyconarr"
+          DOCKER_IMAGE_TAG: "test"
+          DOCKER_MOUNTS: "-v ${LOCALWORKSPACE}/config:/home/pyconarr/config"
+          DOCKER_RUN_OPTIONS: "-it"

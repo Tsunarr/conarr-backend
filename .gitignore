@@ -200,3 +200,6 @@ tests/inputs/*real*.json
 tests/responses/*real*.json
 config/pyconarr.yml
 coverage.lcov
+
+.config/taskfiles/common
+.devcontainer/devcontainer.env

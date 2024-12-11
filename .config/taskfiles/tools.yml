@@ -1,0 +1,20 @@
+---
+version: "3"
+
+includes:
+  commitizen:
+    taskfile: ./common/commitizen.yml
+    optional: true
+    dir: ../..
+  docker:
+    taskfile: ./common/docker.yml
+    optional: true
+    dir: ../..
+  poetry:
+    taskfile: ./common/poetry.yml
+    optional: true
+    dir: ../..
+  megalinter:
+    taskfile: ./common/megalinter.yml
+    optional: true
+    dir: ../..

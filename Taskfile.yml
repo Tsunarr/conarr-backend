@@ -1,121 +1,89 @@
 # https://taskfile.dev
 
+dotenv:
+  - ".env"
+
+env:
+  PYCONARR_VERSION:
+    sh: poetry run toml get --toml-path pyproject.toml tool.poetry.version 2> /dev/null || echo ""
+
+vars:
+  TASK_REPO_TAG: "init"
+includes:
+  bootstrap: ./.config/taskfiles/bootstrap.yml
+  install: ./.config/taskfiles/install.yml
+  tests: ./.config/taskfiles/tests.yml
+  tools: ./.config/taskfiles/tools.yml
+version: "3"
+
 tasks:
-  bruno:test-PR:
-    cmds:
-      - bru run --env "Jellyfin_PR"
-    dir: bruno/pyconarr
+  bootstrap:
+    aliases:
+      - default
     silent: true
-  bruno:test-wiremock:
     cmds:
-      - bru run --env "wiremock"
-    dir: bruno/pyconarr
+      - task: bootstrap:init
+      - "{{.TASK_BINARY_PATH}} install"
+      - "{{.TASK_BINARY_PATH}} --list-all"
+  bootstrap:clean:
     silent: true
-  commitizen:pre-release:alpha:
     cmds:
-      - cz bump --prerelease alpha
-      - git push
-      - git push --tags
-    silent: true
-  commitizen:test:pre-release:
-    cmds:
-      - cz bump --dry-run --prerelease alpha
-    silent: true
-  docker:build:
-    vars:
-      PYCONARR_VERSION:
-        sh: poetry run toml get --toml-path pyproject.toml tool.poetry.version
-    cmds:
-      - docker build -t pyconarr:test --build-arg PYCONARR_VERSION={{.PYCONARR_VERSION}} .
-    silent: true
-  docker:test:
-    cmds:
-      - docker run --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test
-    deps:
-      - docker:build
-    silent: true
-  docker:kill:
-    cmds:
-      - docker kill pyconarr_test
-    silent: true
-  docker:it:
-    cmds:
-      - docker run -it --rm -v ${LOCALWORKSPACE}/config:/home/pyconarr/config --name pyconarr_test pyconarr:test "/bin/sh"
-    deps:
-      - docker:build
-    silent: true
-  github:generate-config:
-    silent: true
-    dir: config
-    cmds:
-      - cp pyconarr.yml pyconarr.github.yml
-      - poetry run yq -i -y '.jellyfin.admin_token = ""' pyconarr.github.yml
-      - base64 -w 0 pyconarr.yml
-      - rm -f pyconarr.github.yml
+      - rm -rf .config/taskfiles/common
+      - task: bootstrap
   install:
     cmds:
-      - poetry install
-    internal: true
+      - task: install:deps
+  run:
     silent: true
-  megalinter:local:
-    cmds:
-      - docker run --pull=always --rm -v ${LOCALWORKSPACE}:/tmp/lint -w
-        /tmp/lint oxsecurity/megalinter:v7
-    silent: true
-  megalinter:devcontainer_in_wsl:
-    cmds:
-      - docker run --pull=always --rm -v '\\wsl.localhost\Ubuntu\'"${LOCALWORKSPACE}:$(pwd)" -w
-        "$(pwd)" -e DEFAULT_WORKSPACE="$(pwd)" oxsecurity/megalinter:v7 --help
-    silent: true
-  poetry:build:
-    cmds:
-      - poetry build
-    silent: true
-  poetry:coverage:
-    cmds:
-      - poetry run coverage xml
-      - poetry run coverage lcov
-    internal: true
-    silent: true
-  poetry:run:
-    cmds:
-      - poetry run uvicorn --app-dir pyconarr main:app --reload
-        --log-config=config/log.yaml
-    deps:
-      - install
     interactive: true
-    silent: true
-  poetry:test:all:
-    cmds:
-      - poetry run pytest
-      - task: poetry:coverage
-    silent: true
-  poetry:test:ci:
-    cmds:
-      - poetry run pytest -m "unit or component"
-      - task: poetry:coverage
     deps:
       - install
-    silent: true
-  poetry:test:component:
     cmds:
-      - poetry run pytest -m component
-      - task: poetry:coverage
-    deps:
-      - install
-    silent: true
-  poetry:test:integration:
+      - task: tools:poetry:run
+        vars:
+          POETRY_APP_DIR: "pyconarr"
+          POETRY_MODULE: "main:app"
+          POETRY_LOG_CONFIG: "config/log.yaml"
+  tests:full:
     cmds:
-      - poetry run pytest -m integration
-      - poetry run coverage xml
-    deps:
-      - install
-    silent: true
-  poetry:test:unit:
+      - task: tools:commitizen:bump:test
+      - task: tests:bruno:wiremock
+      - task: tests:bruno:PR
+  tests:ci:
     cmds:
-      - poetry run pytest -m unit
-      - task: poetry:coverage
-    deps:
-      - install
-    silent: true
-version: "3"
+      - task: tools:poetry:test
+        vars:
+          POETRY_PYTEST_OPTIONS: "-m 'unit or component'"
+  tests:component:
+    cmds:
+      - task: tools:poetry:test
+        vars:
+          POETRY_PYTEST_OPTIONS: "-m 'component'"
+  tests:integration:
+    cmds:
+      - task: tools:poetry:test
+        vars:
+          POETRY_PYTEST_OPTIONS: "-m 'integration'"
+  tests:unit:
+    cmds:
+      - task: tools:poetry:test
+        vars:
+          POETRY_PYTEST_OPTIONS: "-m 'unit'"
+  tests:
+    cmds:
+      - task: tools:poetry:test
+  coverage:
+    cmds:
+      - task: tools:poetry:coverage
+  build:docker:
+    cmds:
+      - task: tools:docker:build
+        vars:
+          DOCKER_BUILD_ARGS: "PYCONARR_VERSION={{.PYCONARR_VERSION}}"
+          DOCKER_IMAGE_NAME: "pyconarr"
+          DOCKER_IMAGE_TAG: "test"
+  build:poetry:
+    aliases:
+      - build
+    cmds:
+      - task: tools:poetry:build

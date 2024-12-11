@@ -23,8 +23,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
-        poetry-version: ["1.7.1"]
+        python-version: ["3.11", "3.12", "3.13"]
+        poetry-version: ["1.8.5"]
         os: ["ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
@@ -40,11 +40,17 @@ jobs:
       - name: Installing go-Task
         uses: "pnorton5432/setup-task@v1"
         with:
-          task-version: 3.34.1
+          task-version: 3.40.1
+      - name: Generate .env for taskfile
+        run: cp .env.sample .env
+      - name: bootstrap taskfiles
+        run: task bootstrap
       - name: Get config file from secrets
         run: echo ${{ secrets.PYCONARR_CONFIG_FILE }} | base64 --decode > config/pyconarr.yml
       - name: Testing app
-        run: task poetry:test:ci
+        run: task tests:ci
+      - name: Generating coverage reports
+        run: task coverage
       - name: get reports
         uses: pmeier/pytest-results-action@main
         if: success() || failure()
@@ -57,7 +63,7 @@ jobs:
           coverageFile: coverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -66,8 +72,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
-        poetry-version: ["1.7.1"]
+        python-version: ["3.11", "3.12", "3.13"]
+        poetry-version: ["1.8.5"]
         os: ["ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
@@ -83,9 +89,13 @@ jobs:
       - name: Installing go-Task
         uses: "pnorton5432/setup-task@v1"
         with:
-          task-version: 3.34.1
+          task-version: 3.40.1
+      - name: Generate .env for taskfile
+        run: cp .env.sample .env
+      - name: Download taskfiles
+        run: task bootstrap
       - name: Build app
-        run: task poetry:build
+        run: task build
       - name: Store the distribution packages
         uses: actions/upload-artifact@v4
         with:
