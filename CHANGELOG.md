@@ -1,3 +1,9 @@
+## 0.3.6 (2024-12-18)
+
+### Fix
+
+- **deps**: update dependency setuptools to v70 [security] (#31)
+
 ## 0.3.5 (2024-12-18)
 
 ### Fix
