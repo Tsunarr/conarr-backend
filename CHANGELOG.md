@@ -1,3 +1,9 @@
+## 0.3.4 (2024-12-18)
+
+### Fix
+
+- **deps**: update all non-major dependencies (#33)
+
 ## 0.3.3 (2024-03-20)
 
 ### Fix
