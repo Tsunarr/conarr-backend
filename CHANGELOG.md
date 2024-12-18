@@ -1,3 +1,9 @@
+## 0.3.5 (2024-12-18)
+
+### Fix
+
+- **deps**: update dependency requests to v2.32.2 [security] (#35)
+
 ## 0.3.4 (2024-12-18)
 
 ### Fix
