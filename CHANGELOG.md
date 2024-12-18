@@ -1,3 +1,9 @@
+## 0.4.1 (2024-12-18)
+
+### Fix
+
+- **ci**: python-package-dist with version for pypi (#46)
+
 ## 0.4.0 (2024-12-18)
 
 ### Feat
