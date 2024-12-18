@@ -1,3 +1,9 @@
+## 0.3.8 (2024-12-18)
+
+### Fix
+
+- **deps**: update dependency setuptools to v75 (#42)
+
 ## 0.3.7 (2024-12-18)
 
 ### Fix
