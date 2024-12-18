@@ -1,3 +1,9 @@
+## 0.4.0 (2024-12-18)
+
+### Feat
+
+- migration of taskfile to distant repository (#45)
+
 ## 0.3.8 (2024-12-18)
 
 ### Fix
