@@ -1,0 +1,52 @@
+---
+version: "3"
+
+vars:
+  TASK_REPO_URL: "https://raw.githubusercontent.com/Tsunarr/taskfile/refs/heads"
+  TASK_INIT_GIT: true
+  TASK_INIT_PYTHON3: true
+  TASK_INIT_COMMITIZEN: true
+  TASK_INIT_BRUNO: true
+  TASK_INIT_NODE: true
+  TASK_INIT_DOCKER: true
+  TASK_INIT_TASK: true
+  TASK_USE_MEGALINTER: true
+  TASK_USE_BRUNO: true
+  TASK_USE_COMMITIZEN: true
+  TASK_USE_DOCKER: true
+  TASK_USE_POETRY: true
+
+includes:
+  common:
+    taskfile: ./common/common.yml
+    optional: true
+
+tasks:
+  init:
+    silent: true
+    internal: true
+    cmds:
+      # download common taskfile dependencies
+      - task: download:common
+      # run bootstrap tasks
+      - "{{.TASK_BINARY_PATH}} bootstrap:common:init"
+
+  download:common:local:
+    internal: true
+    silent: true
+    dir: .config/taskfiles
+    status:
+      - ls common
+    cmds:
+      - mkdir -p common
+
+  download:common:
+    internal: true
+    silent: true
+    dir: .config/taskfiles/common
+    deps:
+      - download:common:local
+    status:
+      - ls common.yml
+    cmds:
+      - wget -q "{{.TASK_REPO_URL}}/{{.TASK_REPO_TAG}}/taskfiles/common.yml?=v1" -O common.yml

@@ -40,7 +40,7 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "poetry install",
+  "postCreateCommand": "go-task bootstrap",
   "privileged": true,
   "remoteEnv": {
     "LOCALWORKSPACE": "${localWorkspaceFolder}"

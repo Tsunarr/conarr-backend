@@ -1,6 +1,4 @@
 ---
-version: "3"
-
 services:
   pyconnar:
     build:
@@ -9,6 +7,8 @@ services:
     volumes:
       - ..:/workspace
     command: /bin/sh -c "sleep infinity"
+    env_file:
+      - devcontainer.env
   wiremock:
     image: wiremock/wiremock
     command: "--verbose"
