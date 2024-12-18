@@ -1,5 +1,5 @@
 # kics-scan disable=d3499f6d-1651-41bb-a9a7-de925fea487b,02d9c71f-3ee8-4986-9c27-1a20d0d19bfc
-FROM alpine:3.20
+FROM alpine:3.21
 
 ARG PYCONARR_VERSION
 EXPOSE 8000
