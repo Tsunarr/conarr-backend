@@ -12,6 +12,6 @@ get {
 
 assert {
   res.status: eq 200
-  res.body.jellyfin.version: matches [0-9]\.[0-9]\.[0-9]
-  res.body.conarr.version: matches [0-9]\.[0-9]\.[0-9]
+  res.body.jellyfin.version: matches [0-9]+\.[0-9]+\.[0-9]+
+  res.body.conarr.version: matches [0-9]+\.[0-9]+\.[0-9]+
 }
