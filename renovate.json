@@ -9,6 +9,7 @@
     ":automergeRequireAllStatusChecks",
     ":ignoreUnstable",
     ":enableVulnerabilityAlertsWithLabel(security)",
-    ":rebaseStalePrs"
+    ":rebaseStalePrs",
+    ":semanticCommitTypeAll(fix)"
   ]
 }
