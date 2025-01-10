@@ -1,3 +1,9 @@
+## 0.4.3 (2025-01-10)
+
+### Fix
+
+- set renovate commit as fix to allow version incrementation
+
 ## 0.4.2 (2025-01-10)
 
 ### Fix
