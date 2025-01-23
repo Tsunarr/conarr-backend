@@ -1,3 +1,9 @@
+## 0.4.5 (2025-01-23)
+
+### Fix
+
+- **deps**: update dependency fastapi to v0.115.7 (#52)
+
 ## 0.4.4 (2025-01-17)
 
 ### Fix
