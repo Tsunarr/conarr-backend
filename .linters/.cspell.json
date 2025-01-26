@@ -19,7 +19,9 @@
     "**htmlcov/**",
     "**/tests/inputs/**",
     "**/tests/responses/**",
-    "**/wiremock"
+    "**/wiremock",
+    "**/CHANGELOG.md",
+    "**/report.xml"
   ],
   "language": "en",
   "dictionaries": [
