@@ -39,7 +39,7 @@ major_version_zero = true
 version_files = ["pyproject.toml", "sonar-project.properties"]
 
 [build-system]
-requires = ["poetry-core==2.0.1"]
+requires = ["poetry-core==2.1.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
