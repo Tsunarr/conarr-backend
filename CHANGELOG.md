@@ -1,3 +1,9 @@
+## 0.4.9 (2025-02-16)
+
+### Fix
+
+- **deps**: update dependency poetry-core to v2.1.1 (#57)
+
 ## 0.4.8 (2025-02-15)
 
 ### Fix
