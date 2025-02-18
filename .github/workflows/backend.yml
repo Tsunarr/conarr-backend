@@ -50,7 +50,7 @@ jobs:
       - name: Testing app
         run: task tests:ci
       - name: Generating coverage reports
-        run: task coverage
+        run: task -v coverage
       - name: get reports
         uses: pmeier/pytest-results-action@main
         if: success() || failure()
