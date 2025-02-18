@@ -48,7 +48,7 @@ venvPath = "/venvs"
 venv = "pyright"
 
 [tool.pytest.ini_options]
-addopts = "--junitxml=report.xml --cov=pyconarr/ ."
+addopts = "--junitxml=report.xml ."
 junit_logging = "all"
 log_cli = "True"
 log_cli_format = "%(asctime)s %(levelname)s %(message)s"
