@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  TASK_REPO_URL: "https://raw.githubusercontent.com/Tsunarr/taskfile/refs/heads"
+  TASK_REPO_URL: "https://raw.githubusercontent.com/Tsunarr/taskfile/refs/tags"
   TASK_INIT_GIT: true
   TASK_INIT_PYTHON3: true
   TASK_INIT_COMMITIZEN: true

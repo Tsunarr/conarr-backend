@@ -8,7 +8,7 @@ env:
     sh: poetry run toml get --toml-path pyproject.toml tool.poetry.version 2> /dev/null || echo ""
 
 vars:
-  TASK_REPO_TAG: "init"
+  TASK_REPO_TAG: "0.1.2"
 includes:
   bootstrap: ./.config/taskfiles/bootstrap.yml
   install: ./.config/taskfiles/install.yml
@@ -75,6 +75,8 @@ tasks:
   coverage:
     cmds:
       - task: tools:poetry:coverage
+        vars:
+          POETRY_PYTEST_OPTIONS: "-m 'unit or component'"
   build:docker:
     cmds:
       - task: tools:docker:build
