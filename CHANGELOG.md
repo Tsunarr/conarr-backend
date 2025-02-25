@@ -1,3 +1,9 @@
+## 0.4.12 (2025-02-25)
+
+### Fix
+
+- **deps**: update dependency setuptools to v75.8.1 (#61)
+
 ## 0.4.11 (2025-02-18)
 
 ### Fix
