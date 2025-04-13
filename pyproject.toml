@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyconarr"
-version = "0.4.24"
+version = "0.4.25"
 readme = "README.md"
 description = ""
 license = "GPLv3"
