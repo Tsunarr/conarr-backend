@@ -1,3 +1,9 @@
+## 0.4.27 (2025-04-19)
+
+### Fix
+
+- **deps**: update dependency uvicorn to v0.34.2 (#77)
+
 ## 0.4.26 (2025-04-14)
 
 ### Fix
