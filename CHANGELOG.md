@@ -1,3 +1,9 @@
+## 0.4.28 (2025-04-29)
+
+### Fix
+
+- **deps**: update dependency setuptools to v78.1.1 (#78)
+
 ## 0.4.27 (2025-04-19)
 
 ### Fix
