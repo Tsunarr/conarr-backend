@@ -1,3 +1,9 @@
+## 0.4.34 (2025-06-09)
+
+### Fix
+
+- **deps**: update dependency requests to v2.32.4 (#85)
+
 ## 0.4.33 (2025-06-09)
 
 ### Fix
