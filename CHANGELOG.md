@@ -1,3 +1,9 @@
+## 0.4.33 (2025-06-09)
+
+### Fix
+
+- **deps**: update dependency commitizen to v4.8.3 (#84)
+
 ## 0.4.32 (2025-06-02)
 
 ### Fix
