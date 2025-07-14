@@ -1,3 +1,9 @@
+## 0.4.35 (2025-07-14)
+
+### Fix
+
+- **deps**: update stefanzweifel/git-auto-commit-action action to v6 (#86)
+
 ## 0.4.34 (2025-06-09)
 
 ### Fix
