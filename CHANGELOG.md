@@ -1,3 +1,9 @@
+## 0.4.36 (2025-08-06)
+
+### Fix
+
+- **deps**: update actions/download-artifact action to v5 (#88)
+
 ## 0.4.35 (2025-07-14)
 
 ### Fix
