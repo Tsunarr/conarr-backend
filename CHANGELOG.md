@@ -1,3 +1,9 @@
+## 0.4.40 (2025-08-07)
+
+### Fix
+
+- **deps**: update dependency debugpy to v1.8.16 (#91)
+
 ## 0.4.39 (2025-08-06)
 
 ### Fix
