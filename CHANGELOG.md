@@ -1,3 +1,9 @@
+## 0.4.44 (2025-09-01)
+
+### Fix
+
+- **deps**: update actions/checkout action to v5 (#93)
+
 ## 0.4.43 (2025-09-01)
 
 ### Fix
