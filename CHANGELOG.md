@@ -1,3 +1,9 @@
+## 0.4.47 (2025-09-22)
+
+### Fix
+
+- **deps**: update dependency coverage to v7.10.7 (#102)
+
 ## 0.4.46 (2025-09-21)
 
 ### Fix
