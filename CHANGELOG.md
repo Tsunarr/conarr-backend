@@ -1,3 +1,9 @@
+## 0.4.48 (2025-09-25)
+
+### Fix
+
+- **deps**: update all non-major dependencies (#103)
+
 ## 0.4.47 (2025-09-22)
 
 ### Fix
