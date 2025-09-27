@@ -1,3 +1,9 @@
+## 0.4.50 (2025-09-27)
+
+### Fix
+
+- **deps**: update actions/setup-python action to v6 (#96)
+
 ## 0.4.49 (2025-09-26)
 
 ### Fix
