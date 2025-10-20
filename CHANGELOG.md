@@ -1,3 +1,9 @@
+## 0.4.52 (2025-10-20)
+
+### Fix
+
+- **deps**: update stefanzweifel/git-auto-commit-action action to v7 (#106)
+
 ## 0.4.51 (2025-10-20)
 
 ### Fix
