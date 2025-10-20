@@ -1,3 +1,9 @@
+## 0.4.54 (2025-10-20)
+
+### Fix
+
+- **deps**: update oxsecurity/megalinter action to v9 (#100)
+
 ## 0.4.53 (2025-10-20)
 
 ### Fix
