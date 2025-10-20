@@ -1,3 +1,9 @@
+## 0.4.53 (2025-10-20)
+
+### Fix
+
+- **deps**: update sonarsource/sonarqube-scan-action action to v6 (#99)
+
 ## 0.4.52 (2025-10-20)
 
 ### Fix
