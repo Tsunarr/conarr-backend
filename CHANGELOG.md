@@ -1,3 +1,9 @@
+## 0.4.55 (2025-10-20)
+
+### Fix
+
+- **deps**: update dependency pytest-cov to v7 (#98)
+
 ## 0.4.54 (2025-10-20)
 
 ### Fix
