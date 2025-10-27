@@ -1,3 +1,9 @@
+## 0.4.57 (2025-10-27)
+
+### Fix
+
+- **deps**: update actions/upload-artifact action to v5 (#109)
+
 ## 0.4.56 (2025-10-24)
 
 ### Fix
