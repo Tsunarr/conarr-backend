@@ -10,7 +10,7 @@ authors = ["Clem <author@clem.fr>", "Tsuna <admin@tsuna.fr>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
-fastapi = "0.120.0"
+fastapi = "0.120.1"
 uvicorn = "^0.38.0"
 toml = "^0.10.2"
 setuptools = "^80.0.0"
