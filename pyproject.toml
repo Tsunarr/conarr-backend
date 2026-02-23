@@ -18,7 +18,7 @@ requests = "^2.31.0"
 pyyaml = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.0.0"
+pytest = "^9.0.0"
 coverage = "^7.4.1"
 httpx = "^0.28.0"
 pytest-cov = "^7.0.0"
