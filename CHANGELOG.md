@@ -1,3 +1,9 @@
+## 0.4.64 (2026-02-23)
+
+### Fix
+
+- **deps**: update peter-evans/create-pull-request action to v8 (#115)
+
 ## 0.4.63 (2026-02-23)
 
 ### Fix
