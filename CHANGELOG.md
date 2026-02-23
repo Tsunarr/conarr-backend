@@ -1,3 +1,9 @@
+## 0.4.62 (2026-02-23)
+
+### Fix
+
+- **deps**: update actions/upload-artifact action to v6 (#117)
+
 ## 0.4.61 (2026-02-23)
 
 ### Fix
