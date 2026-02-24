@@ -1,3 +1,9 @@
+## 0.4.68 (2026-02-24)
+
+### Fix
+
+- **deps**: update actions/checkout action to v6 (#113)
+
 ## 0.4.67 (2026-02-24)
 
 ### Fix
