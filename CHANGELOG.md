@@ -1,3 +1,9 @@
+## 0.4.70 (2026-03-11)
+
+### Fix
+
+- **deps**: update docker/build-push-action action to v7 (#126)
+
 ## 0.4.69 (2026-03-11)
 
 ### Fix
