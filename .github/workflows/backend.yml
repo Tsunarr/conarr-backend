@@ -151,7 +151,7 @@ jobs:
       - name: wait for pypi to update
         run: sleep 30
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
