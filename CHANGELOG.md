@@ -1,3 +1,9 @@
+## 0.4.69 (2026-03-11)
+
+### Fix
+
+- **deps**: update all non-major dependencies (#121)
+
 ## 0.4.68 (2026-02-24)
 
 ### Fix
