@@ -1,3 +1,9 @@
+## 0.4.71 (2026-03-30)
+
+### Fix
+
+- **deps**: update dependency requests to v2.33.0 [security] (#128)
+
 ## 0.4.70 (2026-03-11)
 
 ### Fix
