@@ -1,3 +1,9 @@
+## 0.4.72 (2026-04-11)
+
+### Fix
+
+- **deps**: update actions/download-artifact action to v8 (#122)
+
 ## 0.4.71 (2026-03-30)
 
 ### Fix
