@@ -1,3 +1,9 @@
+## 0.4.73 (2026-04-17)
+
+### Fix
+
+- **deps**: update dependency pytest to v9.0.3 [security] (#130)
+
 ## 0.4.72 (2026-04-11)
 
 ### Fix
