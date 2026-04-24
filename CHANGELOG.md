@@ -1,3 +1,9 @@
+## 0.4.75 (2026-04-24)
+
+### Fix
+
+- **deps**: update docker/metadata-action action to v6 (#125)
+
 ## 0.4.74 (2026-04-24)
 
 ### Fix
