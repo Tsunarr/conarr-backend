@@ -1,3 +1,9 @@
+## 0.4.74 (2026-04-24)
+
+### Fix
+
+- **deps**: update softprops/action-gh-release action to v3 (#129)
+
 ## 0.4.73 (2026-04-17)
 
 ### Fix
