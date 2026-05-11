@@ -1,3 +1,9 @@
+## 0.4.76 (2026-05-11)
+
+### Fix
+
+- **deps**: update sonarsource/sonarqube-scan-action action to v8 (#131)
+
 ## 0.4.75 (2026-04-24)
 
 ### Fix
