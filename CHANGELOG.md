@@ -1,3 +1,9 @@
+## 0.4.77 (2026-07-06)
+
+### Fix
+
+- **deps**: update dependency setuptools to v83 (#134)
+
 ## 0.4.76 (2026-05-11)
 
 ### Fix
