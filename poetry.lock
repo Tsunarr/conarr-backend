@@ -1543,26 +1543,26 @@ files = [
 
 [[package]]
 name = "yq"
-version = "3.4.3"
+version = "4.1.1"
 description = "Command-line YAML/XML processor - jq wrapper for YAML/XML documents"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "yq-3.4.3-py3-none-any.whl", hash = "sha256:547e34bc3caacce83665fd3429bf7c85f8e8b6b9aaee3f953db1ad716ff3434d"},
-    {file = "yq-3.4.3.tar.gz", hash = "sha256:ba586a1a6f30cf705b2f92206712df2281cd320280210e7b7b80adcb8f256e3b"},
+    {file = "yq-4.1.1-py3-none-any.whl", hash = "sha256:4c08e09a617c33fa3dcbc50fe9dd4d2c66a06f7391f1caa10bd3c6039d9fbef0"},
+    {file = "yq-4.1.1.tar.gz", hash = "sha256:ab3fc344dc4a39d833d328f080a6e794c1cb7243b05c0076ac1edce3d22caabd"},
 ]
 
 [package.dependencies]
 argcomplete = ">=1.8.1"
-PyYAML = ">=5.3.1"
+pyyaml = ">=5.3.1"
 tomlkit = ">=0.11.6"
 xmltodict = ">=0.11.0"
 
 [package.extras]
-tests = ["build", "coverage", "mypy", "ruff", "wheel"]
+test = ["build", "coverage", "mypy", "ruff", "wheel"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "f386ad0f52b21817a252ee93f1599b4454d71d293343b8ca763d260608eb5e86"
+content-hash = "18f7c7f30cf3b079118594dc013d254701ec057ad7f3edaef082500ace04fbdf"
