@@ -1,3 +1,9 @@
+## 0.4.79 (2026-07-09)
+
+### Fix
+
+- **deps**: update actions/checkout action to v7 (#132)
+
 ## 0.4.78 (2026-07-07)
 
 ### Fix
