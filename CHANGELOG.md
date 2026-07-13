@@ -1,3 +1,9 @@
+## 0.4.80 (2026-07-13)
+
+### Fix
+
+- **deps**: update docker/login-action action to v4 (#124)
+
 ## 0.4.79 (2026-07-09)
 
 ### Fix
