@@ -1,3 +1,9 @@
+## 0.4.81 (2026-07-14)
+
+### Fix
+
+- **deps**: update actions/upload-artifact action to v7 (#123)
+
 ## 0.4.80 (2026-07-13)
 
 ### Fix
