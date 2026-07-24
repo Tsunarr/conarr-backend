@@ -1,3 +1,9 @@
+## 0.4.85 (2026-07-24)
+
+### Fix
+
+- **deps**: update actions/setup-python action to v7 (#137)
+
 ## 0.4.84 (2026-07-18)
 
 ### Fix
